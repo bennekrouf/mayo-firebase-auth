@@ -9,13 +9,9 @@ import {
 
 export const signIn = async () => {  
   try {
-    console.log('in GoogleSignin.signIn');
     await GoogleSignin.hasPlayServices();
-    console.log('After hasPlayServices');
     const result = await GoogleSignin.signIn();
-    console.log('GoogleSignin.signIn : ', result);
     const googleCredential = auth.GoogleAuthProvider.credential(result.idToken);
-    console.log('Google Credential :', googleCredential);
     // Sign in to Firebase
     const firebaseUserCredential = await auth().signInWithCredential(
       googleCredential,

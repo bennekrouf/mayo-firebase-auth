@@ -41,7 +41,6 @@ export default function App() {
     const fetchData = async () => {
       const data = await readAllFromAsyncStorage();
       setAllData(data);
-      console.log('ALL DATA : ', data);
     };
 
     fetchData();

@@ -2,7 +2,6 @@
   "name": "rn-auth-firebase",
   "version": "1.0.0",
   "main": "dist/index.js",
-  "private": true,
   "license": "MIT",
   "devDependencies": {
     "@testing-library/jest-native": "^5.4.3",

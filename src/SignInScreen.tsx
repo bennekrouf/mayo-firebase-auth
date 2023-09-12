@@ -14,7 +14,6 @@ export const SignInScreen = ({ navigation }: { navigation: any }) => {
   const handleSignIn = async () => {
     const newUser = await signIn();
     setUser(newUser);
-    // console.log('handleSignIn: ', newUser);
     navigation.navigate('Home');
   };
 
