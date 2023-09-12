@@ -1,3 +1,38 @@
+
+# 
+
+
+## Import GoogleService-Info.plist
+
+
+## Update Info.plist:
+
+Add CLIENT_ID:
+
+```
+	<key>GIDClientID</key>
+	<string>XXXXXXXXXXXX.apps.googleusercontent.com</string>
+```
+
+
+Add REVERSED_CLIENT_ID:
+
+```
+  <key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.XXXXXXXXXXXXXXXXX</string>
+			</array>
+		</dict>
+	</array>
+```
+
+## Example of use:
+
 index.js
 
 ```javascript
