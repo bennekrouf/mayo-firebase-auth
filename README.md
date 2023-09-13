@@ -1,13 +1,17 @@
 
-# 
+This package provide a Google sign login screen based on use of Firebase and react-native for iOS.
+
+It is using AsnyStorage to save the user credentials.
 
 
-## Import GoogleService-Info.plist
+## Firebase configuration
+- Connect to firebase, create a project and an iOS application.
+- Export GoogleService-Info.plist and import it in your project/ios
 
 
 ## Update Info.plist:
 
-Add CLIENT_ID:
+- Add CLIENT_ID:
 
 ```
 	<key>GIDClientID</key>
@@ -15,7 +19,7 @@ Add CLIENT_ID:
 ```
 
 
-Add REVERSED_CLIENT_ID:
+- Add REVERSED_CLIENT_ID:
 
 ```
   <key>CFBundleURLTypes</key>
@@ -50,7 +54,7 @@ const Main = () => {
 
 App.tsx
 ```javascript
-import { readAllFromAsyncStorage, SignInScreen, UserContext } from 'rn-auth-firebase';
+import { SignInScreen, UserContext } from 'rn-auth-firebase';
 
 const HomeScreen = ({ navigation }) => {
   const [storageData, setStorageData] = useState(null);
@@ -70,16 +74,6 @@ const HomeScreen = ({ navigation }) => {
 };
 export default function App() {
   const { user } = useContext(UserContext);
-  const [allData, setAllData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await readAllFromAsyncStorage();
-      setAllData(data);
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <NavigationContainer>
