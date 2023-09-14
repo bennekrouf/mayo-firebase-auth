@@ -7,7 +7,7 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 
-export const signIn = async () => {  
+export const signIn = async () => {
   try {
     await GoogleSignin.hasPlayServices();
     const result = await GoogleSignin.signIn();

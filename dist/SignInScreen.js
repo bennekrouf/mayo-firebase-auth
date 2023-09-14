@@ -32,18 +32,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SignInScreen = void 0;
+exports.SignInScreen = exports.authEvents = void 0;
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const signIn_1 = require("./signIn");
 const UserContext_1 = require("./UserContext");
-const SignInScreen = ({ navigation }) => {
+const events_1 = require("events");
+exports.authEvents = new events_1.EventEmitter();
+const SignInScreen = () => {
     const { user, setUser } = (0, react_1.useContext)(UserContext_1.UserContext);
     const handleSignIn = () => __awaiter(void 0, void 0, void 0, function* () {
         const newUser = yield (0, signIn_1.signIn)();
         setUser(newUser);
-        // console.log('handleSignIn: ', newUser);
-        navigation.navigate('Home');
+        exports.authEvents.emit('signedIn', newUser);
     });
     return (react_1.default.createElement(react_native_1.View, { style: styles.container },
         react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: handleSignIn },

@@ -2,19 +2,23 @@ import React, { useContext } from 'react';
 import { View, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { signIn } from './signIn';
 import { UserContext } from './UserContext';
+import { EventEmitter } from 'events';
+
+export const authEvents = new EventEmitter();
+
 type UserContextType = {
   user: any;
   setUser: React.Dispatch<React.SetStateAction<any>>;
   logOut: () => void;
 };
 
-export const SignInScreen = ({ navigation }: { navigation: any }) => {
+export const SignInScreen = () => {
   const { user, setUser } = useContext(UserContext) as UserContextType;
 
   const handleSignIn = async () => {
     const newUser = await signIn();
     setUser(newUser);
-    navigation.navigate('Home');
+    authEvents.emit('signedIn', newUser);
   };
 
   return (

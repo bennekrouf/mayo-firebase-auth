@@ -19,13 +19,9 @@ const async_storage_1 = __importDefault(require("@react-native-async-storage/asy
 const google_signin_1 = require("@react-native-google-signin/google-signin");
 const signIn = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log('in GoogleSignin.signIn');
         yield google_signin_1.GoogleSignin.hasPlayServices();
-        console.log('After hasPlayServices');
         const result = yield google_signin_1.GoogleSignin.signIn();
-        console.log('GoogleSignin.signIn : ', result);
         const googleCredential = auth_1.default.GoogleAuthProvider.credential(result.idToken);
-        console.log('Google Credential :', googleCredential);
         // Sign in to Firebase
         const firebaseUserCredential = yield (0, auth_1.default)().signInWithCredential(googleCredential);
         // Save user to AsyncStorage

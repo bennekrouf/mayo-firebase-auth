@@ -1,8 +1,17 @@
 
-This package provide a Google sign login screen based on use of Firebase and react-native for iOS.
+This package provides a Google sign login screen based on use of Firebase and react-native for iOS.
 
 It is using AsnyStorage to save the user credentials.
 
+Basically, you just have to import the library, wrap your app and navigate to the SignIn screen provided by the library. And then, after login, an event 'signedIn' is emitted, that you can catch to describe what should be done on successfull login. Here I am showing you all the things to do :
+
+
+## Install
+
+```
+  yarn add rn-auth-firebase @react-native-google-signin/google-signin
+  npx pod-install
+```
 
 ## Firebase configuration
 - Connect to firebase, create a project and an iOS application.
@@ -35,7 +44,7 @@ It is using AsnyStorage to save the user credentials.
 	</array>
 ```
 
-## Example of use:
+## Usage:
 
 index.js
 
@@ -53,6 +62,7 @@ const Main = () => {
 
 
 App.tsx
+
 ```javascript
 import { SignInScreen, UserContext } from 'rn-auth-firebase';
 
@@ -87,4 +97,25 @@ export default function App() {
     </NavigationContainer>
   );
 }
+```
+
+
+And here the interesting part about catching event :
+
+```javascript
+import { authEvents } from 'rn-auth-firebase';
+
+// ... inside a component :
+
+useEffect(() => {
+    const handleSignIn = (newUser) => {
+      // Do navigate or something else
+    };
+  
+    authEvents.on('signedIn', handleSignIn);
+    return () => {
+      authEvents.off('signedIn', handleSignIn);
+    };
+  }, []);
+
 ```
