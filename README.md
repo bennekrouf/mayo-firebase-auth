@@ -68,10 +68,11 @@ import { SignInScreen, UserContext } from 'rn-auth-firebase';
 
 const HomeScreen = ({ navigation }) => {
   const [storageData, setStorageData] = useState(null);
-  const { logOut } = useContext(UserContext);
+  const { logOut } = useContext(UserContext) as UserContextType;
 
   const signOut = async () => {
     logOut();
+    console.log('navigation.navigate(SignIn) 2');
     navigation.navigate('SignIn');
   };
 

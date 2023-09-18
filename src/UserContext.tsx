@@ -25,7 +25,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
   useEffect(() => {
     const fetchUser = async () => {
       const storedUser = await AsyncStorage.getItem('user');
-      console.log('Stored user :', storedUser);
+      console.log('RN AUTH - Stored user :', storedUser);
       if (storedUser) {
         setUser(JSON.parse(storedUser));
       }

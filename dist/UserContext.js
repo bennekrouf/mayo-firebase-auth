@@ -49,7 +49,7 @@ const UserProvider = ({ children }) => {
     (0, react_1.useEffect)(() => {
         const fetchUser = () => __awaiter(void 0, void 0, void 0, function* () {
             const storedUser = yield async_storage_1.default.getItem('user');
-            console.log('Stored user :', storedUser);
+            console.log('RN AUTH - Stored user :', storedUser);
             if (storedUser) {
                 setUser(JSON.parse(storedUser));
             }

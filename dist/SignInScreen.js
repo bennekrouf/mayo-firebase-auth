@@ -35,14 +35,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SignInScreen = exports.authEvents = void 0;
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
-const signIn_1 = require("./signIn");
+const signInGoogle_1 = require("./signInGoogle");
 const UserContext_1 = require("./UserContext");
 const events_1 = require("events");
+const signInFirebase_1 = require("./signInFirebase");
 exports.authEvents = new events_1.EventEmitter();
-const SignInScreen = () => {
+const SignInScreen = (paramsObj) => {
+    const firebaseConfig = paramsObj.route.params.firebaseConf;
+    const app = paramsObj.route.params.app;
     const { user, setUser } = (0, react_1.useContext)(UserContext_1.UserContext);
+    console.log("UserContext:", user);
     const handleSignIn = () => __awaiter(void 0, void 0, void 0, function* () {
-        const newUser = yield (0, signIn_1.signIn)();
+        console.log('RN AUTH - BEFORE SIGN IN GOOGLE');
+        const googleCredential = yield (0, signInGoogle_1.signInGoogle)();
+        console.log('RN AUTH - BEFORE SIGN IN FIREBASE');
+        const newUser = (0, signInFirebase_1.signInFirebase)(firebaseConfig, app, googleCredential);
         setUser(newUser);
         exports.authEvents.emit('signedIn', newUser);
     });

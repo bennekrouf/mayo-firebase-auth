@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { View, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { signIn } from './signIn';
+import { signInGoogle } from './signInGoogle';
 import { UserContext } from './UserContext';
 import { EventEmitter } from 'events';
+import {signInFirebase} from './signInFirebase';
 
 export const authEvents = new EventEmitter();
 
@@ -12,11 +13,18 @@ type UserContextType = {
   logOut: () => void;
 };
 
-export const SignInScreen = () => {
+export const SignInScreen = (paramsObj: any) => {
+  const firebaseConfig = paramsObj.route.params.firebaseConf;
+  const app = paramsObj.route.params.app;
+
   const { user, setUser } = useContext(UserContext) as UserContextType;
 
   const handleSignIn = async () => {
-    const newUser = await signIn();
+    console.log('RN AUTH - BEFORE SIGN IN GOOGLE');
+    const googleCredential = await signInGoogle();
+
+    console.log('RN AUTH - BEFORE SIGN IN FIREBASE');
+    const newUser = signInFirebase(firebaseConfig, app, googleCredential);
     setUser(newUser);
     authEvents.emit('signedIn', newUser);
   };
