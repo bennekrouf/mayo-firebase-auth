@@ -38,18 +38,17 @@ const react_native_1 = require("react-native");
 const signInGoogle_1 = require("./signInGoogle");
 const UserContext_1 = require("./UserContext");
 const events_1 = require("events");
-const signInFirebase_1 = require("./signInFirebase");
+const rn_write_firestone_1 = require("rn-write-firestone");
 exports.authEvents = new events_1.EventEmitter();
 const SignInScreen = (paramsObj) => {
     const firebaseConfig = paramsObj.route.params.firebaseConf;
     const app = paramsObj.route.params.app;
     const { user, setUser } = (0, react_1.useContext)(UserContext_1.UserContext);
-    console.log("UserContext:", user);
     const handleSignIn = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log('RN AUTH - BEFORE SIGN IN GOOGLE');
         const googleCredential = yield (0, signInGoogle_1.signInGoogle)();
         console.log('RN AUTH - BEFORE SIGN IN FIREBASE');
-        const newUser = (0, signInFirebase_1.signInFirebase)(firebaseConfig, app, googleCredential);
+        const newUser = (0, rn_write_firestone_1.signInFirebase)(app, firebaseConfig, googleCredential);
         setUser(newUser);
         exports.authEvents.emit('signedIn', newUser);
     });

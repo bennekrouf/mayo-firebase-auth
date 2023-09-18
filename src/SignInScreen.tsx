@@ -3,8 +3,7 @@ import { View, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { signInGoogle } from './signInGoogle';
 import { UserContext } from './UserContext';
 import { EventEmitter } from 'events';
-import {signInFirebase} from './signInFirebase';
-
+import { signInFirebase } from 'rn-write-firestone';
 export const authEvents = new EventEmitter();
 
 type UserContextType = {
@@ -24,7 +23,7 @@ export const SignInScreen = (paramsObj: any) => {
     const googleCredential = await signInGoogle();
 
     console.log('RN AUTH - BEFORE SIGN IN FIREBASE');
-    const newUser = signInFirebase(firebaseConfig, app, googleCredential);
+    const newUser = signInFirebase(app, firebaseConfig, googleCredential);
     setUser(newUser);
     authEvents.emit('signedIn', newUser);
   };
