@@ -16,6 +16,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
   const logOut = async () => {
     await AsyncStorage.removeItem('user');
     setUser(null);
+    authEvents.emit('signedOut', true);
   };
   
   useEffect(() => {

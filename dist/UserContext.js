@@ -46,6 +46,7 @@ const UserProvider = ({ children }) => {
     const logOut = () => __awaiter(void 0, void 0, void 0, function* () {
         yield async_storage_1.default.removeItem('user');
         setUser(null);
+        authEvents_1.default.emit('signedOut', true);
     });
     (0, react_1.useEffect)(() => {
         const fetchUser = () => __awaiter(void 0, void 0, void 0, function* () {
