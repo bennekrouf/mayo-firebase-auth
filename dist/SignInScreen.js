@@ -12,26 +12,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SignInScreen = exports.authEvents = void 0;
+exports.SignInScreen = void 0;
 const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const signInGoogle_1 = require("./signInGoogle");
-// import { UserContext } from './UserContext';
-const events_1 = require("events");
-// import { signInFirebase } from 'rn-write-firestone';
-exports.authEvents = new events_1.EventEmitter();
+const authEvents_1 = __importDefault(require("./authEvents"));
 const img = require('../assets/google_button.png');
-const SignInScreen = (paramsObj) => {
-    const firebaseConfig = paramsObj.route.params.firebaseConf;
-    const app = paramsObj.route.params.app;
-    // const { user, setUser } = useContext(UserContext) as UserContextType;
+const SignInScreen = () => {
     const handleSignIn = () => __awaiter(void 0, void 0, void 0, function* () {
-        console.log('RN AUTH - BEFORE SIGN IN GOOGLE');
         const googleCredential = yield (0, signInGoogle_1.signInGoogle)();
-        console.log('RN AUTH - BEFORE SIGN IN FIREBASE');
-        // const newUser = signInFirebase(app, firebaseConfig, googleCredential);
-        // setUser(newUser);
-        // authEvents.emit('signedIn', newUser);
+        console.log('RN EMIT signedIn : ', googleCredential);
+        authEvents_1.default.emit('signedIn', googleCredential);
     });
     return (react_1.default.createElement(react_native_1.View, { style: styles.container },
         react_1.default.createElement(react_native_1.TouchableOpacity, { onPress: handleSignIn },

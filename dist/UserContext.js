@@ -39,16 +39,15 @@ exports.UserProvider = exports.UserContext = void 0;
 const react_1 = __importStar(require("react"));
 const async_storage_1 = __importDefault(require("@react-native-async-storage/async-storage"));
 const react_2 = require("react");
+const authEvents_1 = __importDefault(require("./authEvents"));
 exports.UserContext = (0, react_1.createContext)(null);
 const UserProvider = ({ children }) => {
-    console.log('IN USER PROVIDER');
     const [user, setUser] = (0, react_2.useState)(null);
     const logOut = () => __awaiter(void 0, void 0, void 0, function* () {
         yield async_storage_1.default.removeItem('user');
         setUser(null);
     });
     (0, react_1.useEffect)(() => {
-        console.log('IN USER PROVIDER');
         const fetchUser = () => __awaiter(void 0, void 0, void 0, function* () {
             const storedUser = yield async_storage_1.default.getItem('user');
             console.log('RN AUTH - Stored user :', storedUser);
@@ -58,6 +57,6 @@ const UserProvider = ({ children }) => {
         });
         fetchUser();
     }, []);
-    return (react_1.default.createElement(exports.UserContext.Provider, { value: { user, setUser, logOut } }, children));
+    return (react_1.default.createElement(exports.UserContext.Provider, { value: { user, setUser, logOut, authEvents: authEvents_1.default } }, children));
 };
 exports.UserProvider = UserProvider;

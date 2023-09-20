@@ -1,5 +1,8 @@
+import { EventEmitter } from 'events';
+
 export type UserContextType = {
-    user: any; // Consider using a more specific type
-    setUser: React.Dispatch<React.SetStateAction<any>>;
-    logOut: () => void;
-  };
+  user: any;
+  setUser: React.Dispatch<React.SetStateAction<any>>;
+  logOut: () => void;
+  authEvents: EventEmitter;
+};

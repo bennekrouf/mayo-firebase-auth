@@ -13,7 +13,6 @@ export const signInGoogle = async () => {
     console.log(error);
     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
       console.log('SIGN_IN_CANCELLED');
-      // User cancelled the login flow
     } else {
       console.log('ERROR in sign in: ', error);
     }

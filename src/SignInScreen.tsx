@@ -1,32 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { View, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { signInGoogle } from './signInGoogle';
-// import { UserContext } from './UserContext';
-import { EventEmitter } from 'events';
-// import { signInFirebase } from 'rn-write-firestone';
-export const authEvents = new EventEmitter();
+import authEvents from './authEvents';
+
 const img = require('../assets/google_button.png');
 
-type UserContextType = {
-  user: any;
-  setUser: React.Dispatch<React.SetStateAction<any>>;
-  logOut: () => void;
-};
-
-export const SignInScreen = (paramsObj: any) => {
-  const firebaseConfig = paramsObj.route.params.firebaseConf;
-  const app = paramsObj.route.params.app;
-
-  // const { user, setUser } = useContext(UserContext) as UserContextType;
-
+export const SignInScreen = () => {
   const handleSignIn = async () => {
-    console.log('RN AUTH - BEFORE SIGN IN GOOGLE');
     const googleCredential = await signInGoogle();
-
-    console.log('RN AUTH - BEFORE SIGN IN FIREBASE');
-    // const newUser = signInFirebase(app, firebaseConfig, googleCredential);
-    // setUser(newUser);
-    // authEvents.emit('signedIn', newUser);
+    console.log('RN EMIT signedIn : ', googleCredential);
+    authEvents.emit('signedIn', googleCredential);
   };
 
   return (

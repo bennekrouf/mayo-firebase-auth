@@ -1,12 +1,8 @@
 import React, {createContext, useEffect, ReactNode} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
-
-type UserContextType = {
-  user: any;
-  setUser: React.Dispatch<React.SetStateAction<any>>;
-  logOut: () => void;
-};
+import authEvents from './authEvents';
+import { UserContextType } from './userContextTypes';
 
 export const UserContext = createContext<UserContextType | null>(null);
 
@@ -15,18 +11,14 @@ type UserProviderProps = {
 };
 
 export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
-  console.log('IN USER PROVIDER');
-  
   const [user, setUser] = useState(null);
 
   const logOut = async () => {
     await AsyncStorage.removeItem('user');
     setUser(null);
   };
-
+  
   useEffect(() => {
-    console.log('IN USER PROVIDER');
-
     const fetchUser = async () => {
       const storedUser = await AsyncStorage.getItem('user');
       console.log('RN AUTH - Stored user :', storedUser);
@@ -38,7 +30,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{user, setUser, logOut}}>
+    <UserContext.Provider value={{user, setUser, logOut, authEvents}}>
       {children}
     </UserContext.Provider>
   );
