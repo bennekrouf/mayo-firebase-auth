@@ -15,6 +15,8 @@ type UserProviderProps = {
 };
 
 export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
+  console.log('IN USER PROVIDER');
+  
   const [user, setUser] = useState(null);
 
   const logOut = async () => {
@@ -23,6 +25,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
   };
 
   useEffect(() => {
+    console.log('IN USER PROVIDER');
+
     const fetchUser = async () => {
       const storedUser = await AsyncStorage.getItem('user');
       console.log('RN AUTH - Stored user :', storedUser);

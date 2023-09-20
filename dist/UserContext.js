@@ -41,12 +41,14 @@ const async_storage_1 = __importDefault(require("@react-native-async-storage/asy
 const react_2 = require("react");
 exports.UserContext = (0, react_1.createContext)(null);
 const UserProvider = ({ children }) => {
+    console.log('IN USER PROVIDER');
     const [user, setUser] = (0, react_2.useState)(null);
     const logOut = () => __awaiter(void 0, void 0, void 0, function* () {
         yield async_storage_1.default.removeItem('user');
         setUser(null);
     });
     (0, react_1.useEffect)(() => {
+        console.log('IN USER PROVIDER');
         const fetchUser = () => __awaiter(void 0, void 0, void 0, function* () {
             const storedUser = yield async_storage_1.default.getItem('user');
             console.log('RN AUTH - Stored user :', storedUser);
