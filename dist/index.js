@@ -19,6 +19,6 @@ var signInGoogle_1 = require("./signInGoogle");
 Object.defineProperty(exports, "signInGoogle", { enumerable: true, get: function () { return signInGoogle_1.signInGoogle; } });
 var SignInScreen_1 = require("./SignInScreen");
 Object.defineProperty(exports, "SignInScreen", { enumerable: true, get: function () { return SignInScreen_1.SignInScreen; } });
-__exportStar(require("./UserContext"), exports);
 var useLogout_1 = require("./useLogout");
 Object.defineProperty(exports, "useLogout", { enumerable: true, get: function () { return useLogout_1.useLogout; } });
+__exportStar(require("./UserContext"), exports);

@@ -38,16 +38,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserProvider = exports.UserContext = void 0;
 const react_1 = __importStar(require("react"));
 const async_storage_1 = __importDefault(require("@react-native-async-storage/async-storage"));
-const react_2 = require("react");
 const authEvents_1 = __importDefault(require("./authEvents"));
+const useLogout_1 = require("./useLogout");
 exports.UserContext = (0, react_1.createContext)(null);
 const UserProvider = ({ children }) => {
-    const [user, setUser] = (0, react_2.useState)(null);
-    const logOut = () => __awaiter(void 0, void 0, void 0, function* () {
-        yield async_storage_1.default.removeItem('user');
-        setUser(null);
-        authEvents_1.default.emit('signedOut', true);
-    });
+    const [user, setUser] = (0, react_1.useState)(null);
     (0, react_1.useEffect)(() => {
         const fetchUser = () => __awaiter(void 0, void 0, void 0, function* () {
             const storedUser = yield async_storage_1.default.getItem('user');
@@ -58,6 +53,6 @@ const UserProvider = ({ children }) => {
         });
         fetchUser();
     }, []);
-    return (react_1.default.createElement(exports.UserContext.Provider, { value: { user, setUser, logOut, authEvents: authEvents_1.default } }, children));
+    return (react_1.default.createElement(exports.UserContext.Provider, { value: { user, setUser, useLogout: useLogout_1.useLogout, authEvents: authEvents_1.default } }, children));
 };
 exports.UserProvider = UserProvider;

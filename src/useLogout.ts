@@ -1,12 +1,14 @@
-import { useContext } from 'react';
-import { UserContext } from './UserContext';
-import { UserContextType } from './userContextTypes';
+import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import authEvents from './authEvents';
 
 export const useLogout = () => {
-  const { logOut } = useContext(UserContext) as UserContextType;
+  const [user, setUser] = useState(null);
 
-  const performLogout = () => {
-    logOut();
+  const performLogout = async () => {
+    await AsyncStorage.removeItem('user');
+    setUser(null);
+    authEvents.emit('signedOut', true);
   };
 
   return { performLogout };
