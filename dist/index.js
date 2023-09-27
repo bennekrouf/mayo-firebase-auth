@@ -14,11 +14,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useLogout = exports.SignInScreen = exports.signInGoogle = void 0;
+exports.useFirebaseLogout = exports.useLogout = exports.SignInScreen = exports.signInGoogle = void 0;
 var signInGoogle_1 = require("./utils/signInGoogle");
 Object.defineProperty(exports, "signInGoogle", { enumerable: true, get: function () { return signInGoogle_1.signInGoogle; } });
 var SignInScreen_1 = require("./screens/SignInScreen");
 Object.defineProperty(exports, "SignInScreen", { enumerable: true, get: function () { return SignInScreen_1.SignInScreen; } });
 var useLogout_1 = require("./hooks/useLogout");
 Object.defineProperty(exports, "useLogout", { enumerable: true, get: function () { return useLogout_1.useLogout; } });
+var useFirebaseLogout_1 = require("./hooks/useFirebaseLogout");
+Object.defineProperty(exports, "useFirebaseLogout", { enumerable: true, get: function () { return useFirebaseLogout_1.useFirebaseLogout; } });
 __exportStar(require("./screens/UserContext"), exports);

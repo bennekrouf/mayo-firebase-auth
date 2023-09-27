@@ -8,23 +8,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useLogout = void 0;
+exports.useFirebaseLogout = void 0;
 const react_1 = require("react");
-const async_storage_1 = __importDefault(require("@react-native-async-storage/async-storage"));
-const authEvents_1 = __importDefault(require("./authEvents"));
-const useLogout = () => {
-    const [user, setUser] = (0, react_1.useState)(null);
-    const performLogout = () => __awaiter(void 0, void 0, void 0, function* () {
-        console.log('RN In performLogout');
-        yield async_storage_1.default.removeItem('user');
-        setUser(null);
-        authEvents_1.default.emit('signedOut', true);
-        console.log('RN signedOut event emitted');
-    });
+const native_1 = require("@react-navigation/native");
+const index_1 = require("../index");
+const useLogout_1 = require("./useLogout");
+const useFirebaseLogout = (backScreen) => {
+    const { performLogout } = (0, useLogout_1.useLogout)();
+    const { authEvents } = (0, react_1.useContext)(index_1.UserContext);
+    const navigation = (0, native_1.useNavigation)();
+    (0, react_1.useEffect)(() => {
+        const onSignedOut = () => __awaiter(void 0, void 0, void 0, function* () {
+            navigation.navigate(backScreen);
+        });
+        authEvents.on('signedOut', onSignedOut);
+        return () => {
+            authEvents.off('signedOut', onSignedOut);
+        };
+    }, []);
     return { performLogout };
 };
-exports.useLogout = useLogout;
+exports.useFirebaseLogout = useFirebaseLogout;
