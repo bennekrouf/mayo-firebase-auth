@@ -1,19 +1,20 @@
 import React from 'react';
-import { View, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { signInGoogle } from './signInGoogle';
-import authEvents from './authEvents';
+import { View, TouchableOpacity, Image, StyleSheet, StatusBar } from 'react-native';
+import { signInGoogle } from '../utils/signInGoogle';
+import authEvents from '../authEvents';
 
 const img = require('../assets/google_button.png');
 
 export const SignInScreen = () => {
   const handleSignIn = async () => {
     const googleCredential = await signInGoogle();
-    console.log('RN EMIT signedIn : ', googleCredential);
+    // console.log('RN EMIT signedIn : ', googleCredential);
     authEvents.emit('signedIn', googleCredential);
   };
 
   return (
     <View style={styles.container}>
+      <StatusBar hidden={true} />
       <TouchableOpacity onPress={handleSignIn}>
         <Image
           source={img}

@@ -1,8 +1,8 @@
 import React, {useState, createContext, useEffect, ReactNode} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import authEvents from './authEvents';
-import { UserContextType } from './userContextTypes';
-import { useLogout } from './useLogout';
+import authEvents from '../authEvents';
+import { UserContextType } from '../types/userContextTypes';
+import { useLogout } from '../hooks/useLogout';
 
 export const UserContext = createContext<UserContextType | null>(null);
 
@@ -16,7 +16,6 @@ export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
   useEffect(() => {
     const fetchUser = async () => {
       const storedUser = await AsyncStorage.getItem('user');
-      console.log('RN AUTH - Stored user :', storedUser);
       if (storedUser) {
         setUser(JSON.parse(storedUser));
       }
