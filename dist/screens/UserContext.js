@@ -43,6 +43,7 @@ const useLogout_1 = require("../hooks/useLogout");
 exports.UserContext = (0, react_1.createContext)(null);
 const UserProvider = ({ children }) => {
     const [user, setUser] = (0, react_1.useState)(null);
+    const { performLogout } = (0, useLogout_1.useLogout)();
     (0, react_1.useEffect)(() => {
         const fetchUser = () => __awaiter(void 0, void 0, void 0, function* () {
             const storedUser = yield async_storage_1.default.getItem('user');

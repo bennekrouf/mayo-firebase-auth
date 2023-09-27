@@ -13,14 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useLogout = void 0;
-const react_1 = require("react");
 const async_storage_1 = __importDefault(require("@react-native-async-storage/async-storage"));
 const authEvents_1 = __importDefault(require("../authEvents"));
 const useLogout = () => {
-    const [user, setUser] = (0, react_1.useState)(null);
     const performLogout = () => __awaiter(void 0, void 0, void 0, function* () {
         yield async_storage_1.default.removeItem('user');
-        setUser(null);
         authEvents_1.default.emit('signedOut', true);
     });
     return { performLogout };

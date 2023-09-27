@@ -12,6 +12,7 @@ type UserProviderProps = {
 
 export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
   const [user, setUser] = useState(null);
+  const { performLogout } = useLogout();
 
   useEffect(() => {
     const fetchUser = async () => {
