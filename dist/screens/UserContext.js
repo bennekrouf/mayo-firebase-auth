@@ -39,10 +39,11 @@ exports.UserProvider = exports.UserContext = void 0;
 const react_1 = __importStar(require("react"));
 const async_storage_1 = __importDefault(require("@react-native-async-storage/async-storage"));
 const authEvents_1 = __importDefault(require("../authEvents"));
-const useLogout_1 = require("../hooks/useLogout");
+const useFirebaseLogout_1 = require("../hooks/useFirebaseLogout");
 exports.UserContext = (0, react_1.createContext)(null);
 const UserProvider = ({ children }) => {
     const [user, setUser] = (0, react_1.useState)(null);
+    const { performLogout } = (0, useFirebaseLogout_1.useFirebaseLogout)("SignIn"); // or whatever screen you want to navigate back to
     (0, react_1.useEffect)(() => {
         const fetchUser = () => __awaiter(void 0, void 0, void 0, function* () {
             const storedUser = yield async_storage_1.default.getItem('user');
@@ -52,6 +53,6 @@ const UserProvider = ({ children }) => {
         });
         fetchUser();
     }, []);
-    return (react_1.default.createElement(exports.UserContext.Provider, { value: { user, setUser, useLogout: useLogout_1.useLogout, authEvents: authEvents_1.default } }, children));
+    return (react_1.default.createElement(exports.UserContext.Provider, { value: { user, setUser, performLogout, authEvents: authEvents_1.default } }, children));
 };
 exports.UserProvider = UserProvider;
