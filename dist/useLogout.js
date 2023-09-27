@@ -19,9 +19,11 @@ const authEvents_1 = __importDefault(require("./authEvents"));
 const useLogout = () => {
     const [user, setUser] = (0, react_1.useState)(null);
     const performLogout = () => __awaiter(void 0, void 0, void 0, function* () {
+        console.log('RN In performLogout');
         yield async_storage_1.default.removeItem('user');
         setUser(null);
         authEvents_1.default.emit('signedOut', true);
+        console.log('RN signedOut event emitted');
     });
     return { performLogout };
 };
