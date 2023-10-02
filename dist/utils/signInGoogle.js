@@ -17,8 +17,10 @@ const auth_1 = __importDefault(require("@react-native-firebase/auth"));
 const google_signin_1 = require("@react-native-google-signin/google-signin");
 const signInGoogle = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield google_signin_1.GoogleSignin.hasPlayServices();
+        const res = yield google_signin_1.GoogleSignin.hasPlayServices();
+        console.log(`RNA - 1 - GoogleSignin.hasPlayServices : ${JSON.stringify(res)}`);
         const result = yield google_signin_1.GoogleSignin.signIn();
+        console.log(`RNA - 2 - GoogleSignin.hasPlayServices : ${JSON.stringify(result)}`);
         return auth_1.default.GoogleAuthProvider.credential(result.idToken);
     }
     catch (error) {
@@ -29,6 +31,7 @@ const signInGoogle = () => __awaiter(void 0, void 0, void 0, function* () {
         else {
             console.log('ERROR in sign in: ', error);
         }
+        console.log(`RNA - X - GoogleSignin.hasPlayServices : ${JSON.stringify(error)}`);
     }
 });
 exports.signInGoogle = signInGoogle;

@@ -6,8 +6,12 @@ import {
 
 export const signInGoogle = async () => {
   try {
-    await GoogleSignin.hasPlayServices();
+    const res = await GoogleSignin.hasPlayServices();
+    console.log(`RNA - 1 - GoogleSignin.hasPlayServices : ${JSON.stringify(res)}`);
+
     const result = await GoogleSignin.signIn();
+    console.log(`RNA - 2 - GoogleSignin.hasPlayServices : ${JSON.stringify(result)}`);
+
     return auth.GoogleAuthProvider.credential(result.idToken);
   } catch (error: any) {
     console.log(error);
@@ -16,5 +20,6 @@ export const signInGoogle = async () => {
     } else {
       console.log('ERROR in sign in: ', error);
     }
+    console.log(`RNA - X - GoogleSignin.hasPlayServices : ${JSON.stringify(error)}`);
   }
 };
