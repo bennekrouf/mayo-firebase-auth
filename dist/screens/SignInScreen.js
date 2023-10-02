@@ -18,9 +18,9 @@ const react_native_1 = require("react-native");
 const signInGoogle_1 = require("../utils/signInGoogle");
 const authEvents_1 = __importDefault(require("../authEvents"));
 const img = require('../assets/google_button.png');
-const SignInScreen = () => {
+const SignInScreen = (webClientId) => {
     const handleSignIn = () => __awaiter(void 0, void 0, void 0, function* () {
-        const googleCredential = yield (0, signInGoogle_1.signInGoogle)();
+        const googleCredential = yield (0, signInGoogle_1.signInGoogle)(webClientId);
         // console.log('RN EMIT signedIn : ', googleCredential);
         authEvents_1.default.emit('signedIn', googleCredential);
     });

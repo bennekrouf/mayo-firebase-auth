@@ -5,9 +5,9 @@ import authEvents from '../authEvents';
 
 const img = require('../assets/google_button.png');
 
-export const SignInScreen = () => {
+export const SignInScreen = (webClientId:string) => {
   const handleSignIn = async () => {
-    const googleCredential = await signInGoogle();
+    const googleCredential = await signInGoogle(webClientId);
     // console.log('RN EMIT signedIn : ', googleCredential);
     authEvents.emit('signedIn', googleCredential);
   };
