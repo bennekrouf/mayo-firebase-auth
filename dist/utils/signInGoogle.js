@@ -18,7 +18,7 @@ const google_signin_1 = require("@react-native-google-signin/google-signin");
 const signInGoogle = (webClientId) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const configureRes = google_signin_1.GoogleSignin.configure({ webClientId });
-        console.log(`RNA - 0 - GoogleSignin.configure : ${JSON.stringify(configureRes)}`);
+        console.log(`RNA - 0 - GoogleSignin.configure with ${webClientId}: result : ${JSON.stringify(configureRes)}`);
         const res = yield google_signin_1.GoogleSignin.hasPlayServices();
         console.log(`RNA - 1 - GoogleSignin.hasPlayServices : ${JSON.stringify(res)}`);
         const result = yield google_signin_1.GoogleSignin.signIn();

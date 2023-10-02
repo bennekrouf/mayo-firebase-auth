@@ -8,7 +8,7 @@ export const signInGoogle = async (webClientId:string) => {
   try {
 
     const configureRes = GoogleSignin.configure({webClientId});
-    console.log(`RNA - 0 - GoogleSignin.configure : ${JSON.stringify(configureRes)}`);
+    console.log(`RNA - 0 - GoogleSignin.configure with ${webClientId}: result : ${JSON.stringify(configureRes)}`);
     
     const res = await GoogleSignin.hasPlayServices();
     console.log(`RNA - 1 - GoogleSignin.hasPlayServices : ${JSON.stringify(res)}`);
