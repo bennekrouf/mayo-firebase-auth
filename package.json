@@ -1,6 +1,6 @@
 {
   "name": "rn-auth-firebase",
-  "version": "1.0.31",
+  "version": "1.0.33",
   "main": "dist/index.js",
   "license": "MIT",
   "devDependencies": {
@@ -19,6 +19,6 @@
   "peerDependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/bennekrouf/rn-auth-firebase.git"
+    "url": "git+https://github.com/bennekrouf/rn-auth-firebase.git"
   }
 }
