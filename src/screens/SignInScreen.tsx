@@ -5,7 +5,9 @@ import authEvents from '../authEvents';
 
 const img = require('../assets/google_button.png');
 
-export const SignInScreen = (webClientId:string) => {
+export const SignInScreen = ({ route }: { route: any }) => {
+  const { webClientId } = route.params;
+
   const handleSignIn = async () => {
     try {
       console.log('RN - 5 - Request authenticate with webclientId: ', webClientId);
@@ -13,7 +15,8 @@ export const SignInScreen = (webClientId:string) => {
       console.log('RN EMIT signedIn : ', googleCredential);
       authEvents.emit('signedIn', googleCredential);
     } catch (error) {
-      console.log(`Àuthentication `  )
+      console.log(`Àuthentication error ${JSON.stringify(error)}`);
+      return error;
     }
   };
 
@@ -31,9 +34,9 @@ export const SignInScreen = (webClientId:string) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-  });
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
