@@ -4,11 +4,12 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 
-export const signInGoogle = async (param:any) => {
+export const signInGoogle = async (webClientId:string) => {
   try {
 
-    const configureRes = GoogleSignin.configure({webClientId: param.webClientId});
-    console.log(`RNA - 0 - GoogleSignin.configure with ${JSON.stringify(param)}: result : ${JSON.stringify(configureRes)}`);
+    console.log(`RNA - 0 - GoogleSignin.configure with param ${JSON.stringify(webClientId)}`);
+    const configureRes = GoogleSignin.configure({webClientId});
+    console.log(`RNA - 0.1 - GoogleSignin.configure result : ${JSON.stringify(configureRes)}`);
     
     const res = await GoogleSignin.hasPlayServices();
     console.log(`RNA - 1 - GoogleSignin.hasPlayServices : ${JSON.stringify(res)}`);

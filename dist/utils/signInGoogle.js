@@ -15,10 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.signInGoogle = void 0;
 const auth_1 = __importDefault(require("@react-native-firebase/auth"));
 const google_signin_1 = require("@react-native-google-signin/google-signin");
-const signInGoogle = (param) => __awaiter(void 0, void 0, void 0, function* () {
+const signInGoogle = (webClientId) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const configureRes = google_signin_1.GoogleSignin.configure({ webClientId: param.webClientId });
-        console.log(`RNA - 0 - GoogleSignin.configure with ${JSON.stringify(param)}: result : ${JSON.stringify(configureRes)}`);
+        console.log(`RNA - 0 - GoogleSignin.configure with param ${JSON.stringify(webClientId)}`);
+        const configureRes = google_signin_1.GoogleSignin.configure({ webClientId });
+        console.log(`RNA - 0.1 - GoogleSignin.configure result : ${JSON.stringify(configureRes)}`);
         const res = yield google_signin_1.GoogleSignin.hasPlayServices();
         console.log(`RNA - 1 - GoogleSignin.hasPlayServices : ${JSON.stringify(res)}`);
         const result = yield google_signin_1.GoogleSignin.signIn();
