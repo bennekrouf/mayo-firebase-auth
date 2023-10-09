@@ -22,7 +22,7 @@ const SignInScreen = ({ route }) => {
     const { webClientId } = route.params;
     const handleSignIn = () => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            console.log('RN - 5 - Request authenticate with webclientId: ', webClientId);
+            console.log('RN - handleSignInScreen - Request authenticate with webclientId: ', webClientId);
             const googleCredential = yield (0, signInGoogle_1.signInGoogle)(webClientId);
             console.log('RN EMIT signedIn : ', googleCredential);
             authEvents_1.default.emit('signedIn', googleCredential);

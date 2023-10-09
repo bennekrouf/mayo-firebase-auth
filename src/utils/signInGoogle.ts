@@ -6,7 +6,7 @@ import {
 
 export const signInGoogle = async (webClientId:string) => {
   try {
-    console.log(`RNA - 0 - GoogleSignin.configure with param ${JSON.stringify(webClientId)}`);
+    console.log(`RNA - 0 - GoogleSignin.configure with webClientId ${JSON.stringify(webClientId)}`);
     const configureRes = GoogleSignin.configure({webClientId: webClientId});
     console.log(`RNA - 0.1 - GoogleSignin.configure result : ${JSON.stringify(configureRes)}`);
     
@@ -14,7 +14,7 @@ export const signInGoogle = async (webClientId:string) => {
     console.log(`RNA - 1 - GoogleSignin.hasPlayServices : ${JSON.stringify(res)}`);
 
     const result = await GoogleSignin.signIn();
-    console.log(`RNA - 2 - GoogleSignin.hasPlayServices : ${JSON.stringify(result)}`);
+    console.log(`RNA - 2 - GoogleSignin.signIn : ${JSON.stringify(result)}`);
 
     return auth.GoogleAuthProvider.credential(result.idToken);
   } catch (error: any) {
@@ -22,8 +22,7 @@ export const signInGoogle = async (webClientId:string) => {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         console.log('SIGN_IN_CANCELLED');
       } else {
-        console.log('ERROR in sign in: ', error);
+        console.log('RNA - X - GoogleSignin.hasPlayServices: ', error.message, error.code);
       }
-      console.log(`RNA - X - GoogleSignin.hasPlayServices : ${JSON.stringify(error)}`);
   }
 };

@@ -10,7 +10,7 @@ export const SignInScreen = ({ route }: { route: any }) => {
 
   const handleSignIn = async () => {
     try {
-      console.log('RN - 5 - Request authenticate with webclientId: ', webClientId);
+      console.log('RN - handleSignInScreen - Request authenticate with webclientId: ', webClientId);
       const googleCredential = await signInGoogle(webClientId);
       console.log('RN EMIT signedIn : ', googleCredential);
       authEvents.emit('signedIn', googleCredential);
