@@ -71,3 +71,21 @@ export {conf};
 ```
 
 ## Usage:
+
+
+For android WebClientId is mandatory:
+
+
+```TSX
+
+  const webClientId = 'XXXXXXXX.apps.googleusercontent.com';
+
+....
+
+  <Stack.Screen
+      name="SignIn"
+      component={SignInScreen}
+      options={{title: "Sign In", headerShown: false}}
+      initialParams={{ webClientId }}
+    />
+``````

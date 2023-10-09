@@ -20,9 +20,15 @@ const authEvents_1 = __importDefault(require("../authEvents"));
 const img = require('../assets/google_button.png');
 const SignInScreen = (webClientId) => {
     const handleSignIn = () => __awaiter(void 0, void 0, void 0, function* () {
-        const googleCredential = yield (0, signInGoogle_1.signInGoogle)(webClientId);
-        // console.log('RN EMIT signedIn : ', googleCredential);
-        authEvents_1.default.emit('signedIn', googleCredential);
+        try {
+            console.log('RN - 5 - Request authenticate with webclientId: ', webClientId);
+            const googleCredential = yield (0, signInGoogle_1.signInGoogle)(webClientId);
+            console.log('RN EMIT signedIn : ', googleCredential);
+            authEvents_1.default.emit('signedIn', googleCredential);
+        }
+        catch (error) {
+            console.log(`Àuthentication `);
+        }
     });
     return (react_1.default.createElement(react_native_1.View, { style: styles.container },
         react_1.default.createElement(react_native_1.StatusBar, { hidden: true }),

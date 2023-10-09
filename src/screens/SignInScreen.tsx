@@ -7,9 +7,14 @@ const img = require('../assets/google_button.png');
 
 export const SignInScreen = (webClientId:string) => {
   const handleSignIn = async () => {
-    const googleCredential = await signInGoogle(webClientId);
-    // console.log('RN EMIT signedIn : ', googleCredential);
-    authEvents.emit('signedIn', googleCredential);
+    try {
+      console.log('RN - 5 - Request authenticate with webclientId: ', webClientId);
+      const googleCredential = await signInGoogle(webClientId);
+      console.log('RN EMIT signedIn : ', googleCredential);
+      authEvents.emit('signedIn', googleCredential);
+    } catch (error) {
+      console.log(`Àuthentication `  )
+    }
   };
 
   return (
