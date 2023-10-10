@@ -1,6 +1,6 @@
 {
   "name": "rn-auth-firebase",
-  "version": "1.0.38",
+  "version": "1.0.j39",
   "main": "dist/index.js",
   "license": "MIT",
   "dependencies": {
