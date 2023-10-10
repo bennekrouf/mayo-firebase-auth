@@ -17,7 +17,7 @@ const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const signInGoogle_1 = require("../utils/signInGoogle");
 const authEvents_1 = __importDefault(require("../authEvents"));
-const img = require('../assets/google_button.png');
+const img = require('../../assets/google_button.png');
 const SignInScreen = ({ route }) => {
     const { webClientId } = route.params;
     const handleSignIn = () => __awaiter(void 0, void 0, void 0, function* () {
