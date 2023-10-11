@@ -14,11 +14,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useLogout = void 0;
 const async_storage_1 = __importDefault(require("@react-native-async-storage/async-storage"));
+const google_signin_1 = require("@react-native-google-signin/google-signin");
 const authEvents_1 = __importDefault(require("../authEvents"));
 const useLogout = () => {
     const performLogout = () => __awaiter(void 0, void 0, void 0, function* () {
-        yield async_storage_1.default.removeItem('user');
-        authEvents_1.default.emit('signedOut', true);
+        try {
+            yield google_signin_1.GoogleSignin.revokeAccess();
+            yield google_signin_1.GoogleSignin.signOut();
+            yield async_storage_1.default.removeItem('user');
+            authEvents_1.default.emit('signedOut', true);
+        }
+        catch (error) {
+            console.error(error);
+        }
     });
     return { performLogout };
 };

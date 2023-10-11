@@ -24,11 +24,13 @@ const SignInScreen = ({ route }) => {
         try {
             console.log('RN - handleSignInScreen - Request authenticate with webclientId: ', webClientId);
             const googleCredential = yield (0, signInGoogle_1.signInGoogle)(webClientId);
+            if (!googleCredential)
+                throw Error(`RN SignInScreen - signInGoogle do not return any user for webClientId ${webClientId}`);
             console.log('RN EMIT signedIn : ', googleCredential);
             authEvents_1.default.emit('signedIn', googleCredential);
         }
         catch (error) {
-            console.log(`Àuthentication error ${JSON.stringify(error)}`);
+            console.log(`Authentication error ${JSON.stringify(error)}`);
             return error;
         }
     });
