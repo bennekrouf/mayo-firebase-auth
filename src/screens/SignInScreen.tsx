@@ -12,10 +12,11 @@ export const SignInScreen = ({ route }: { route: any }) => {
     try {
       console.log('RN - handleSignInScreen - Request authenticate with webclientId: ', webClientId);
       const googleCredential = await signInGoogle(webClientId);
+      if(!googleCredential) throw Error(`RN SignInScreen - signInGoogle do not return any user for webClientId ${webClientId}`);
       console.log('RN EMIT signedIn : ', googleCredential);
       authEvents.emit('signedIn', googleCredential);
     } catch (error) {
-      console.log(`Àuthentication error ${JSON.stringify(error)}`);
+      console.log(`Authentication error ${JSON.stringify(error)}`);
       return error;
     }
   };
