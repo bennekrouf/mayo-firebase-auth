@@ -1,5 +1,1 @@
-import { EventEmitter } from 'events';
-
-const authEvents = new EventEmitter();
-
-export default authEvents;
+export default new (require('events').EventEmitter)();
