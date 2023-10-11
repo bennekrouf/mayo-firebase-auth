@@ -72,20 +72,93 @@ export {conf};
 
 ## Usage:
 
-
-For android WebClientId is mandatory:
-
+HomeScreen.tsx : 
 
 ```TSX
+  import { useLogout, UserContext, UserContextType } from 'rn-auth-firebase';
+  const HomeScreen = () => {
+    const { authEvents } = useContext(UserContext) as UserContextType;
+    const navigation = useNavigation<NavigationProp<RootStackParamList, 'SignIn'>>();
 
-  const webClientId = 'XXXXXXXX.apps.googleusercontent.com';
+    const { performLogout } = useLogout();
+    useEffect(() => {
+      const onSignedOut = async () => {
+        navigation.navigate('SignIn');
+      };
+      
+      authEvents.on('signedOut', onSignedOut);
+      return () => authEvents.off('signedOut', onSignedOut);
+    }, []);
+  }
+``````
 
-....
 
-  <Stack.Screen
-      name="SignIn"
-      component={SignInScreen}
-      options={{title: "Sign In", headerShown: false}}
-      initialParams={{ webClientId }}
-    />
+InitialScreen.tsx :
+
+````Javascript
+  import { UserContext, UserContextType } from 'rn-auth-firebase';
+  const InitialScreen = () => {
+    const { user, setUser, authEvents } = useContext(UserContext) as UserContextType;
+    const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+    useEffect(() => {
+        navigation.navigate(user ? 'Home':'SignIn');
+    }, [user]);
+
+    useEffect(() => {
+      const onSignedIn = async (googleCredentials) => {
+        if(!googleCredentials) throw Error('InitialScreen - Trying to firebase signIn without googleCredentials !');
+        const newUser = await signInFirebase(firebaseConf, googleCredentials);
+        if(!newUser) throw Error('InitialScreen - Firebase sign do not return any user !');
+        setUser(newUser);
+      };
+      authEvents.on('signedIn', onSignedIn);
+
+      return () => {
+        authEvents.off('signedIn', onSignedIn);
+      };
+    }, []);
+
+    return null;
+  };
+```
+
+
+AppNavigator.tsx:
+
+````Javascript
+  import { SignInScreen, UserProvider } from 'rn-auth-firebase';
+
+  export const MainApp: React.FC = () => {
+    // For android WebClientId is mandatory. Also don't forget to add the SHA key in firebase console
+    const webClientId = "XXXXXXXX.apps.googleusercontent.com";
+
+    return (
+
+      <NavigationContainer>
+        <UserProvider>
+          <UserPreferenceProvider>
+            <Stack.Navigator>
+              <Stack.Screen name="Login" component={InitialScreen}
+                options={{ headerShown: false }} 
+              />
+              <Stack.Screen name="SignIn" component={SignInScreen} 
+              options={{
+                headerLeft: () => null,  // Hide back button
+                headerShown: false,
+              }}
+              initialParams={{ webClientId }}
+              />
+              <Stack.Screen name="Home" component={HomeScreen} 
+                  options={{ 
+                    headerLeft: () => null,  // Hide back button
+                    headerShown: false,
+                  }}
+              />
+            </Stack.Navigator>
+          </UserPreferenceProvider>
+        </UserProvider>
+      </NavigationContainer>
+      );
+    }
 ``````
