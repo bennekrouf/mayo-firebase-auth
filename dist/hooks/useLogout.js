@@ -19,8 +19,12 @@ const authEvents_1 = __importDefault(require("../authEvents"));
 const useLogout = () => {
     const performLogout = () => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            yield google_signin_1.GoogleSignin.revokeAccess();
-            yield google_signin_1.GoogleSignin.signOut();
+            const webClientId = yield async_storage_1.default.getItem('webClientId');
+            if (webClientId) {
+                google_signin_1.GoogleSignin.configure({ webClientId: webClientId });
+                yield google_signin_1.GoogleSignin.revokeAccess();
+                yield google_signin_1.GoogleSignin.signOut();
+            }
             yield async_storage_1.default.removeItem('user');
             authEvents_1.default.emit('signedOut', true);
         }

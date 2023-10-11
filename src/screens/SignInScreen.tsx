@@ -2,6 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, Image, StyleSheet, StatusBar } from 'react-native';
 import { signInGoogle } from '../utils/signInGoogle';
 import authEvents from '../authEvents';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const img = require('../../assets/google_button.png');
 

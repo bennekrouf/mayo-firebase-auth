@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.signInGoogle = void 0;
+const async_storage_1 = __importDefault(require("@react-native-async-storage/async-storage"));
 const auth_1 = __importDefault(require("@react-native-firebase/auth"));
 const google_signin_1 = require("@react-native-google-signin/google-signin");
 const signInGoogle = (webClientId) => __awaiter(void 0, void 0, void 0, function* () {
@@ -23,6 +24,7 @@ const signInGoogle = (webClientId) => __awaiter(void 0, void 0, void 0, function
         console.log(`RNA - 1 - GoogleSignin.hasPlayServices : ${JSON.stringify(res)}`);
         const result = yield google_signin_1.GoogleSignin.signIn();
         console.log(`RNA - 2 - GoogleSignin.signIn : ${JSON.stringify(result)}`);
+        yield async_storage_1.default.setItem('webClientId', webClientId); // Used for convenience of the logout
         return auth_1.default.GoogleAuthProvider.credential(result.idToken);
     }
     catch (error) {

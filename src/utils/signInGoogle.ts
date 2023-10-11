@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 import {
   GoogleSignin,
@@ -15,6 +16,7 @@ export const signInGoogle = async (webClientId:string) => {
     const result = await GoogleSignin.signIn();
     console.log(`RNA - 2 - GoogleSignin.signIn : ${JSON.stringify(result)}`);
 
+    await AsyncStorage.setItem('webClientId', webClientId); // Used for convenience of the logout
     return auth.GoogleAuthProvider.credential(result.idToken);
   } catch (error: any) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
