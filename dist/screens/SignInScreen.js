@@ -19,15 +19,22 @@ const signInGoogle_1 = require("../utils/signInGoogle");
 const authEvents_1 = __importDefault(require("../authEvents"));
 const img = require('../../assets/google_button.png');
 const SignInScreen = ({ route }) => {
-    const { webClientId } = route.params;
+    var _a, _b;
+    const webClientId = (_b = (_a = route.params) === null || _a === void 0 ? void 0 : _a.webClientId) !== null && _b !== void 0 ? _b : null;
     const handleSignIn = () => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            console.log('RN - handleSignInScreen - Request authenticate with webclientId: ', webClientId);
-            const googleCredential = yield (0, signInGoogle_1.signInGoogle)(webClientId);
-            if (!googleCredential)
-                throw Error(`RN SignInScreen - signInGoogle do not return any user for webClientId ${webClientId}`);
-            console.log('RN EMIT signedIn : ', googleCredential);
-            authEvents_1.default.emit('signedIn', googleCredential);
+            if (react_native_1.Platform.OS === 'android' && !webClientId) {
+                console.warn("Warning: webClientId is not provided for Android.");
+                throw Error(`RN SignInScreen - webClientId is not provided for Android`);
+            }
+            else {
+                console.log('RN - handleSignInScreen - Request authenticate with webclientId: ', webClientId);
+                const googleCredential = yield (0, signInGoogle_1.signInGoogle)(webClientId);
+                if (!googleCredential)
+                    throw Error(`RN SignInScreen - signInGoogle do not return any user for webClientId ${webClientId}`);
+                console.log('RN EMIT signedIn : ', googleCredential);
+                authEvents_1.default.emit('signedIn', googleCredential);
+            }
         }
         catch (error) {
             console.log(`Authentication error ${JSON.stringify(error)}`);

@@ -25,11 +25,13 @@ const useLogout = () => {
                 yield google_signin_1.GoogleSignin.revokeAccess();
                 yield google_signin_1.GoogleSignin.signOut();
             }
-            yield async_storage_1.default.removeItem('user');
-            authEvents_1.default.emit('signedOut', true);
         }
         catch (error) {
             console.error(error);
+        }
+        finally {
+            yield async_storage_1.default.removeItem('user');
+            authEvents_1.default.emit('signedOut', true);
         }
     });
     return { performLogout };

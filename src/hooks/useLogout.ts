@@ -11,10 +11,11 @@ export const useLogout = () => {
             await GoogleSignin.revokeAccess();
             await GoogleSignin.signOut();
          }
-         await AsyncStorage.removeItem('user');
-         authEvents.emit('signedOut', true);
       } catch (error) {
          console.error(error);
+      } finally {
+         await AsyncStorage.removeItem('user');
+         authEvents.emit('signedOut', true);
       }
    };
 
