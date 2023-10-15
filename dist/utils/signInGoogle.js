@@ -24,7 +24,9 @@ const signInGoogle = (webClientId) => __awaiter(void 0, void 0, void 0, function
         console.log(`RNA - 1 - GoogleSignin.hasPlayServices : ${JSON.stringify(res)}`);
         const result = yield google_signin_1.GoogleSignin.signIn();
         console.log(`RNA - 2 - GoogleSignin.signIn : ${JSON.stringify(result)}`);
-        yield async_storage_1.default.setItem('webClientId', webClientId); // Used for convenience of the logout
+        if (webClientId) {
+            yield async_storage_1.default.setItem('webClientId', webClientId); // Used for convenience of the logout
+        }
         return auth_1.default.GoogleAuthProvider.credential(result.idToken);
     }
     catch (error) {
