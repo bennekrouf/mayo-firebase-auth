@@ -1,30 +1,30 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
-import {
-  GoogleSignin,
-  statusCodes,
-} from '@react-native-google-signin/google-signin';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import { Logger } from 'rn-logging'; 
 
-export const signInGoogle = async (webClientId:string) => {
+export const signInGoogle = async (webClientId: string) => {
   try {
-    console.log(`RNA - 0 - GoogleSignin.configure with params ${JSON.stringify({webClientId: webClientId})}`);
-    GoogleSignin.configure({webClientId: webClientId});
-    
-    const res = await GoogleSignin.hasPlayServices();
-    console.log(`RNA - 1 - GoogleSignin.hasPlayServices : ${JSON.stringify(res)}`);
+    Logger.info("Configuring GoogleSignin with webClientId.", { webClientId });
+    GoogleSignin.configure({ webClientId: webClientId });
 
-    const result = await GoogleSignin.signIn();
-    console.log(`RNA - 2 - GoogleSignin.signIn : ${JSON.stringify(result)}`);
+    const playServicesAvailable = await GoogleSignin.hasPlayServices();
+    Logger.info("Checking availability of Google Play Services.", { playServicesAvailable });
 
-    if(webClientId) {
-      await AsyncStorage.setItem('webClientId', webClientId); // Used for convenience of the logout
+    const signInResult = await GoogleSignin.signIn();
+    Logger.info("User signed in using Google.", { userId: signInResult.user.id });  // Log only user ID for privacy reasons
+
+    if (webClientId) {
+      await AsyncStorage.setItem('webClientId', webClientId);  // Store webClientId for convenience during logout
+      Logger.info("Stored webClientId in AsyncStorage.");
     }
-    return auth.GoogleAuthProvider.credential(result.idToken);
+
+    return auth.GoogleAuthProvider.credential(signInResult.idToken);
   } catch (error: any) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        console.log('SIGN_IN_CANCELLED');
-      } else {
-        console.log('RNA - X - GoogleSignin.hasPlayServices: ', error.message, error.code);
-      }
+    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      Logger.warn("User cancelled the Google sign-in process.");
+    } else {
+      Logger.error("Error during Google sign-in.", { message: error.message, errorCode: error.code });
+    }
   }
 };

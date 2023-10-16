@@ -3,6 +3,7 @@ import { Platform, View, TouchableOpacity, Image, StyleSheet, StatusBar } from '
 import { signInGoogle } from '../utils/signInGoogle';
 import authEvents from '../authEvents';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Logger } from 'rn-logging';
 
 const img = require('../../assets/google_button.png');
 
@@ -10,19 +11,27 @@ export const SignInScreen = ({ route }: { route: any }) => {
   const webClientId = route.params?.webClientId ?? null;
 
   const handleSignIn = async () => {
+    Logger.info("Initiating Google sign-in.");
+
     try {
       if (Platform.OS === 'android' && !webClientId) {
-        console.warn("Warning: webClientId is not provided for Android.");
+        Logger.warn("webClientId is not provided for Android.");
         throw Error(`RN SignInScreen - webClientId is not provided for Android`);
       } else {
-        console.log('RN - handleSignInScreen - Request authenticate with webclientId: ', webClientId);
+        Logger.info(`Requesting authentication with webclientId: ${webClientId}`);
         const googleCredential = await signInGoogle(webClientId);
-        if(!googleCredential) throw Error(`RN SignInScreen - signInGoogle do not return any user for webClientId ${webClientId}`);
-        console.log('RN EMIT signedIn : ', googleCredential);
+        
+        if(!googleCredential) {
+          const errorMsg = `signInGoogle did not return any user for webClientId ${webClientId}`;
+          Logger.error(errorMsg);
+          throw Error(`RN SignInScreen - ${errorMsg}`);
+        }
+
+        Logger.info("User signed in successfully.", { googleCredential });
         authEvents.emit('signedIn', googleCredential);
       }
     } catch (error) {
-      console.log(`Authentication error ${JSON.stringify(error)}`);
+      Logger.error(`Authentication error: ${JSON.stringify(error)}`, error);
       return error;
     }
   };

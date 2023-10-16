@@ -17,27 +17,32 @@ const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
 const signInGoogle_1 = require("../utils/signInGoogle");
 const authEvents_1 = __importDefault(require("../authEvents"));
+const rn_logging_1 = require("rn-logging");
 const img = require('../../assets/google_button.png');
 const SignInScreen = ({ route }) => {
     var _a, _b;
     const webClientId = (_b = (_a = route.params) === null || _a === void 0 ? void 0 : _a.webClientId) !== null && _b !== void 0 ? _b : null;
     const handleSignIn = () => __awaiter(void 0, void 0, void 0, function* () {
+        rn_logging_1.Logger.info("Initiating Google sign-in.");
         try {
             if (react_native_1.Platform.OS === 'android' && !webClientId) {
-                console.warn("Warning: webClientId is not provided for Android.");
+                rn_logging_1.Logger.warn("webClientId is not provided for Android.");
                 throw Error(`RN SignInScreen - webClientId is not provided for Android`);
             }
             else {
-                console.log('RN - handleSignInScreen - Request authenticate with webclientId: ', webClientId);
+                rn_logging_1.Logger.info(`Requesting authentication with webclientId: ${webClientId}`);
                 const googleCredential = yield (0, signInGoogle_1.signInGoogle)(webClientId);
-                if (!googleCredential)
-                    throw Error(`RN SignInScreen - signInGoogle do not return any user for webClientId ${webClientId}`);
-                console.log('RN EMIT signedIn : ', googleCredential);
+                if (!googleCredential) {
+                    const errorMsg = `signInGoogle did not return any user for webClientId ${webClientId}`;
+                    rn_logging_1.Logger.error(errorMsg);
+                    throw Error(`RN SignInScreen - ${errorMsg}`);
+                }
+                rn_logging_1.Logger.info("User signed in successfully.", { googleCredential });
                 authEvents_1.default.emit('signedIn', googleCredential);
             }
         }
         catch (error) {
-            console.log(`Authentication error ${JSON.stringify(error)}`);
+            rn_logging_1.Logger.error(`Authentication error: ${JSON.stringify(error)}`, error);
             return error;
         }
     });
