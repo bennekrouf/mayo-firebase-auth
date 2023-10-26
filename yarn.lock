@@ -3385,10 +3385,22 @@ rimraf@~2.6.2:
   dependencies:
     glob "^7.1.3"
 
+rn-firebase-config@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/rn-firebase-config/-/rn-firebase-config-1.0.1.tgz#da5b4c4facb0ef0ad10379d77ad411d88ca8cfd3"
+  integrity sha512-ACESH8A7eA/V1BnQqFBXwL9yrTmFiD4zk6hx+VqO66wba6/HuZAkZagaUZbwlFDZnTd8ifTU2CO0hZz2by64yA==
+  dependencies:
+    rn-logging "^1.0.6"
+
 rn-logging@^1.0.5:
   version "1.0.5"
   resolved "https://registry.npmjs.org/rn-logging/-/rn-logging-1.0.5.tgz#aee4ed6c5c44630a8ba49b2e33796307ec7465ca"
   integrity sha512-BBgRWqGH3C6lwZaO1bEQz9/JkgD1H7rQCxD6VgL3iOktX8/J6MZv22MuyqTUz5VDc3IWskOSJe/5L/39I7kO4w==
+
+rn-logging@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/rn-logging/-/rn-logging-1.0.6.tgz#92c6f250ac05581e3243d2f40b67a3a3560e5854"
+  integrity sha512-Zx4Nv7VO/XM08peAhzCR1A9uh0BbXr5LLiTcFul+DwDPLy3WfwWWluiFtheR2uRj7Qpbb/tq6MaxV1be5aA3tQ==
 
 safe-buffer@5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"

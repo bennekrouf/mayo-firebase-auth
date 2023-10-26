@@ -1,14 +1,17 @@
 import React from 'react';
 import { Platform, View, TouchableOpacity, Image, StyleSheet, StatusBar } from 'react-native';
+
+import { extractFirebaseConfig } from 'rn-firebase-config';
+
 import { signInGoogle } from '../utils/signInGoogle';
 import authEvents from '../authEvents';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Logger } from 'rn-logging';
 
 const img = require('../../assets/google_button.png');
 
-export const SignInScreen = ({ route }: { route: any }) => {
-  const webClientId = route.params?.webClientId ?? null;
+export const SignInScreen = ({ }: { route: any }) => {
+  const firebaseConfig = extractFirebaseConfig();
+  const webClientId = firebaseConfig?.webClientId ?? "";
 
   const handleSignIn = async () => {
     Logger.info("Initiating Google sign-in.");

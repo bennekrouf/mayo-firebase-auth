@@ -15,13 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SignInScreen = void 0;
 const react_1 = __importDefault(require("react"));
 const react_native_1 = require("react-native");
+const rn_firebase_config_1 = require("rn-firebase-config");
 const signInGoogle_1 = require("../utils/signInGoogle");
 const authEvents_1 = __importDefault(require("../authEvents"));
 const rn_logging_1 = require("rn-logging");
 const img = require('../../assets/google_button.png');
-const SignInScreen = ({ route }) => {
-    var _a, _b;
-    const webClientId = (_b = (_a = route.params) === null || _a === void 0 ? void 0 : _a.webClientId) !== null && _b !== void 0 ? _b : null;
+const SignInScreen = ({}) => {
+    var _a;
+    const firebaseConfig = (0, rn_firebase_config_1.extractFirebaseConfig)();
+    const webClientId = (_a = firebaseConfig === null || firebaseConfig === void 0 ? void 0 : firebaseConfig.webClientId) !== null && _a !== void 0 ? _a : "";
     const handleSignIn = () => __awaiter(void 0, void 0, void 0, function* () {
         rn_logging_1.Logger.info("Initiating Google sign-in.");
         try {

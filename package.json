@@ -1,6 +1,6 @@
 {
   "name": "rn-auth-firebase",
-  "version": "1.0.47",
+  "version": "1.0.48",
   "main": "dist/index.js",
   "license": "MIT",
   "author": "Mohamed Bennekrouf",
@@ -13,6 +13,7 @@
     "@types/node": "^20.6.2",
     "@types/react": "^18.2.22",
     "events": "^3.3.0",
+    "rn-firebase-config": "^1.0.1",
     "rn-logging": "^1.0.5"
   },
   "devDependencies": {
