@@ -1,6 +1,6 @@
 {
   "name": "mayo-firebase-auth",
-  "version": "1.0.51",
+  "version": "1.0.52",
   "main": "dist/index.js",
   "license": "MIT",
   "author": "Mohamed Bennekrouf",
@@ -13,7 +13,7 @@
     "@types/node": "^20.6.2",
     "@types/react": "^18.2.22",
     "events": "^3.3.0",
-    "mayo-firebase-config": "^1.0.7",
+    "mayo-firebase-config": "^1.0.8",
     "mayo-logger": "^1.0.8"
   },
   "devDependencies": {

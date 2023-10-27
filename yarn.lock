@@ -2513,10 +2513,10 @@ makeerror@1.0.12:
   dependencies:
     tmpl "1.0.5"
 
-mayo-firebase-config@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.npmjs.org/mayo-firebase-config/-/mayo-firebase-config-1.0.7.tgz#e1664b902d69dcc2ea0be1abe544cdbe3e3283b5"
-  integrity sha512-CdlbhNS8yStalURUKKYzD1T+fFXvFI2XqdeX1dSXpLX9ErJgnLj30lAC9TwlmqHEFQn6IOlj6VfpKka0JhiElw==
+mayo-firebase-config@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.npmjs.org/mayo-firebase-config/-/mayo-firebase-config-1.0.8.tgz#38d2e57fa89bd6f6f1cd82688919c5b4426c81f3"
+  integrity sha512-49f3iROVTol4nFd2EW1x8hyZxHwOVPhobRE9hTDtyqMB8+VkNJBHZAiwzgIoU+9OopwvC07zDC5IdPBsXT06ng==
   dependencies:
     mayo-logger "^1.0.7"
 
