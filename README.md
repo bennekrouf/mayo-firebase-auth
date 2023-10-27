@@ -3,7 +3,7 @@ The context of using this package is:
 - You have a react-native app
 - You need to do google authentication
 - You need to cache the connected user to avoid requesting login every time
-- You need to save in a firestone db the last connection date.
+- You need to save in a firestore db the last connection date.
 
 Basically, you just have to import the library, wrap your app and navigate to the SignIn screen provided by the library.
 
@@ -16,7 +16,7 @@ Here I am showing you all the things to do :
 
 ```bash
   # use yarn, it is faster and safer
-  yarn add rn-auth-firebase @react-native-google-signin/google-signin
+  yarn add mayo-firebase-auth @react-native-google-signin/google-signin
   npx pod-install
 ```
 
@@ -75,7 +75,7 @@ export {conf};
 HomeScreen.tsx : 
 
 ```TSX
-  import { useLogout, UserContext, UserContextType } from 'rn-auth-firebase';
+  import { useLogout, UserContext, UserContextType } from 'mayo-firebase-auth';
   const HomeScreen = () => {
     const { authEvents } = useContext(UserContext) as UserContextType;
     const navigation = useNavigation<NavigationProp<RootStackParamList, 'SignIn'>>();
@@ -96,7 +96,7 @@ HomeScreen.tsx :
 InitialScreen.tsx :
 
 ````Javascript
-  import { UserContext, UserContextType } from 'rn-auth-firebase';
+  import { UserContext, UserContextType } from 'mayo-firebase-auth';
   const InitialScreen = () => {
     const { user, setUser, authEvents } = useContext(UserContext) as UserContextType;
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -127,7 +127,7 @@ InitialScreen.tsx :
 AppNavigator.tsx:
 
 ````Javascript
-  import { SignInScreen, UserProvider } from 'rn-auth-firebase';
+  import { SignInScreen, UserProvider } from 'mayo-firebase-auth';
 
   export const MainApp: React.FC = () => {
     // For android WebClientId is mandatory. Also don't forget to add the SHA key in firebase console

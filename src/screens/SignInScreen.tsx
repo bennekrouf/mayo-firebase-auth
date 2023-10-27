@@ -1,11 +1,11 @@
 import React from 'react';
 import { Platform, View, TouchableOpacity, Image, StyleSheet, StatusBar } from 'react-native';
 
-import { extractFirebaseConfig } from 'rn-firebase-config';
+import { extractFirebaseConfig } from 'mayo-firebase-config';
 
 import { signInGoogle } from '../utils/signInGoogle';
 import authEvents from '../authEvents';
-import { Logger } from 'rn-logging';
+import { Logger } from 'mayo-logger';
 
 const img = require('../../assets/google_button.png');
 

@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import authEvents from '../authEvents';
-import { Logger } from 'rn-logging';
+import { Logger } from 'mayo-logger';
 
 export const useLogout = () => {
    const performLogout = async () => {

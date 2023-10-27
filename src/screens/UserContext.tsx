@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import authEvents from '../authEvents';
 import { UserContextType } from '../types/userContextTypes';
 import { useLogout } from '../hooks/useLogout';
-import { Logger } from 'rn-logging';
+import { Logger } from 'mayo-logger';
 
 export const UserContext = createContext<UserContextType | null>(null);
 

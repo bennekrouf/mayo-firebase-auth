@@ -40,25 +40,25 @@ const react_1 = __importStar(require("react"));
 const async_storage_1 = __importDefault(require("@react-native-async-storage/async-storage"));
 const authEvents_1 = __importDefault(require("../authEvents"));
 const useLogout_1 = require("../hooks/useLogout");
-const rn_logging_1 = require("rn-logging");
+const mayo_logger_1 = require("mayo-logger");
 exports.UserContext = (0, react_1.createContext)(null);
 const UserProvider = ({ children }) => {
     const [user, setUser] = (0, react_1.useState)(null);
     (0, react_1.useEffect)(() => {
         const fetchUser = () => __awaiter(void 0, void 0, void 0, function* () {
-            rn_logging_1.Logger.info("Attempting to fetch user from AsyncStorage.");
+            mayo_logger_1.Logger.info("Attempting to fetch user from AsyncStorage.");
             try {
                 const storedUser = yield async_storage_1.default.getItem('user');
                 if (storedUser) {
-                    rn_logging_1.Logger.info("User found in AsyncStorage.", { storedUser: JSON.parse(storedUser) });
+                    mayo_logger_1.Logger.info("User found in AsyncStorage.", { storedUser: JSON.parse(storedUser) });
                     setUser(JSON.parse(storedUser));
                 }
                 else {
-                    rn_logging_1.Logger.warn("No user found in AsyncStorage.");
+                    mayo_logger_1.Logger.warn("No user found in AsyncStorage.");
                 }
             }
             catch (error) {
-                rn_logging_1.Logger.error("Error fetching user from AsyncStorage.", error);
+                mayo_logger_1.Logger.error("Error fetching user from AsyncStorage.", error);
             }
         });
         fetchUser();

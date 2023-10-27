@@ -1,6 +1,6 @@
 {
-  "name": "rn-auth-firebase",
-  "version": "1.0.49",
+  "name": "mayo-firebase-auth",
+  "version": "1.0.51",
   "main": "dist/index.js",
   "license": "MIT",
   "author": "Mohamed Bennekrouf",
@@ -13,8 +13,8 @@
     "@types/node": "^20.6.2",
     "@types/react": "^18.2.22",
     "events": "^3.3.0",
-    "rn-firebase-config": "^1.0.4",
-    "rn-logging": "^1.0.5"
+    "mayo-firebase-config": "^1.0.7",
+    "mayo-logger": "^1.0.8"
   },
   "devDependencies": {
     "react-native": "^0.72.0",
@@ -25,6 +25,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bennekrouf/rn-auth-firebase.git"
+    "url": "git+https://github.com/bennekrouf/mayo-firebase-auth.git"
   }
 }

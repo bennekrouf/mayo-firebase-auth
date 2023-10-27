@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
-import { Logger } from 'rn-logging'; 
+import { Logger } from 'mayo-logger'; 
 
 export const signInGoogle = async (webClientId: string) => {
   try {
