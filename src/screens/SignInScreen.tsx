@@ -1,7 +1,7 @@
-import React from 'react';
-import { Platform, View, TouchableOpacity, Image, StyleSheet, StatusBar } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Platform, View, TouchableOpacity, Image, StyleSheet, StatusBar, ActivityIndicator } from 'react-native';
 
-import { extractFirebaseConfig } from 'mayo-firebase-config';
+import { extractFirebaseConfig, FirebaseConfig } from 'mayo-firebase-config';
 
 import { signInGoogle } from '../utils/signInGoogle';
 import authEvents from '../authEvents';
@@ -10,7 +10,24 @@ import { Logger } from 'mayo-logger';
 const img = require('../../assets/google_button.png');
 
 export const SignInScreen = ({ }: { route: any }) => {
-  const firebaseConfig = extractFirebaseConfig();
+  const [firebaseConfig, setFirebaseConfig] = useState<FirebaseConfig | null>(null);
+
+  useEffect(() => {
+    const fetchConfig = async () => {
+      const config = await extractFirebaseConfig();
+      setFirebaseConfig(config);
+    };
+
+    fetchConfig();
+  }, []);
+
+  if (!firebaseConfig) {
+    return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      );
+  }
   const webClientId = firebaseConfig?.webClientId ?? "";
 
   const handleSignIn = async () => {
