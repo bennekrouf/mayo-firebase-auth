@@ -137,7 +137,6 @@ AppNavigator.tsx:
 
       <NavigationContainer>
         <UserProvider>
-          <UserPreferenceProvider>
             <Stack.Navigator>
               <Stack.Screen name="Login" component={InitialScreen}
                 options={{ headerShown: false }} 
@@ -156,7 +155,6 @@ AppNavigator.tsx:
                   }}
               />
             </Stack.Navigator>
-          </UserPreferenceProvider>
         </UserProvider>
       </NavigationContainer>
       );

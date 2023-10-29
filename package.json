@@ -1,6 +1,6 @@
 {
   "name": "mayo-firebase-auth",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "dist/index.js",
   "license": "MIT",
   "author": "Mohamed Bennekrouf",
