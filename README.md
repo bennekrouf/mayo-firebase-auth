@@ -53,6 +53,8 @@ Here I am showing you all the things to do :
 
 ## Create a firebaseConfig.json file:
 
+!! You can avoid this step by using this npm component : may-firebase-config
+
 The parameters value are picked from GoogleService-Info.plist and app in the firebase console.
 
 ```js
@@ -72,9 +74,9 @@ export {conf};
 
 ## Usage:
 
-HomeScreen.tsx : 
+### HomeScreen.tsx : 
 
-```TSX
+```Javascript
   import { useLogout, UserContext, UserContextType } from 'mayo-firebase-auth';
   const HomeScreen = () => {
     const { authEvents } = useContext(UserContext) as UserContextType;
@@ -90,12 +92,12 @@ HomeScreen.tsx :
       return () => authEvents.off('signedOut', onSignedOut);
     }, []);
   }
-``````
+```
 
 
-InitialScreen.tsx :
+### InitialScreen.tsx :
 
-````Javascript
+```Javascript
   import { UserContext, UserContextType } from 'mayo-firebase-auth';
   const InitialScreen = () => {
     const { user, setUser, authEvents } = useContext(UserContext) as UserContextType;
@@ -124,9 +126,9 @@ InitialScreen.tsx :
 ```
 
 
-AppNavigator.tsx:
+### AppNavigator.tsx:
 
-````Javascript
+```Javascript
   import { SignInScreen, UserProvider } from 'mayo-firebase-auth';
 
   export const MainApp: React.FC = () => {
@@ -159,4 +161,9 @@ AppNavigator.tsx:
       </NavigationContainer>
       );
     }
-``````
+```
+
+
+## 📚 License
+
+This project is licensed under the MIT License.
