@@ -5,4 +5,5 @@ export type UserContextType = {
   setUser: React.Dispatch<React.SetStateAction<any>>;
   useLogout: () => void;
   authEvents: EventEmitter;
+  userContextLoading: boolean;
 };

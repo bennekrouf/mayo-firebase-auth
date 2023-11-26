@@ -100,11 +100,11 @@ export {conf};
 ```Javascript
   import { UserContext, UserContextType } from 'mayo-firebase-auth';
   const InitialScreen = () => {
-    const { user, setUser, authEvents } = useContext(UserContext) as UserContextType;
+    const { user, setUser, authEvents, userContextLoading } = useContext(UserContext) as UserContextType;
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     useEffect(() => {
-        navigation.navigate(user ? 'Home':'SignIn');
+        if(!userContextLoading) navigation.navigate(user ? 'Home':'SignIn');
     }, [user]);
 
     useEffect(() => {
@@ -140,22 +140,11 @@ export {conf};
       <NavigationContainer>
         <UserProvider>
             <Stack.Navigator>
-              <Stack.Screen name="Login" component={InitialScreen}
-                options={{ headerShown: false }} 
-              />
+              <Stack.Screen name="Login" component={InitialScreen}/>
               <Stack.Screen name="SignIn" component={SignInScreen} 
-              options={{
-                headerLeft: () => null,  // Hide back button
-                headerShown: false,
-              }}
-              initialParams={{ webClientId }}
+                initialParams={{ webClientId }}
               />
-              <Stack.Screen name="Home" component={HomeScreen} 
-                  options={{ 
-                    headerLeft: () => null,  // Hide back button
-                    headerShown: false,
-                  }}
-              />
+              <Stack.Screen name="Home" component={HomeScreen} />
             </Stack.Navigator>
         </UserProvider>
       </NavigationContainer>
