@@ -11,7 +11,7 @@
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/stack": "^6.3.17",
     "@types/node": "^20.6.2",
-    "@types/react": "^18.2.22",
+    "@types/react": "^18.2.27",
     "events": "^3.3.0",
     "mayo-firebase-config": "^1.2.21",
     "mayo-logger": "^1.0.8"

@@ -44,6 +44,7 @@ const mayo_logger_1 = require("mayo-logger");
 exports.UserContext = (0, react_1.createContext)(null);
 const UserProvider = ({ children }) => {
     const [user, setUser] = (0, react_1.useState)(null);
+    const [userContextLoading, setUserContextLoading] = (0, react_1.useState)(true);
     (0, react_1.useEffect)(() => {
         const fetchUser = () => __awaiter(void 0, void 0, void 0, function* () {
             mayo_logger_1.Logger.info("Attempting to fetch user from AsyncStorage.");
@@ -60,9 +61,12 @@ const UserProvider = ({ children }) => {
             catch (error) {
                 mayo_logger_1.Logger.error("Error fetching user from AsyncStorage.", error);
             }
+            finally {
+                setUserContextLoading(false);
+            }
         });
         fetchUser();
     }, []);
-    return (react_1.default.createElement(exports.UserContext.Provider, { value: { user, setUser, useLogout: useLogout_1.useLogout, authEvents: authEvents_1.default } }, children));
+    return (react_1.default.createElement(exports.UserContext.Provider, { value: { user, setUser, useLogout: useLogout_1.useLogout, authEvents: authEvents_1.default, userContextLoading } }, children));
 };
 exports.UserProvider = UserProvider;
