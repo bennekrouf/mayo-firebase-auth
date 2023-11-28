@@ -1,6 +1,6 @@
 {
   "name": "mayo-firebase-auth",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "main": "dist/index.js",
   "license": "MIT",
   "author": "Mohamed Bennekrouf",
@@ -13,15 +13,15 @@
     "@types/node": "^20.6.2",
     "@types/react": "^18.2.22",
     "events": "^3.3.0",
-    "mayo-firebase-config": "^1.1.0",
+    "mayo-firebase-config": "^1.2.21",
     "mayo-logger": "^1.0.8"
   },
   "devDependencies": {
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
-    "react-native": "^0.60.0 || ^0.72.0 || ^1000.0.0",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "react-native-device-info": "^10.11.0"
   },
   "repository": {
     "type": "git",
