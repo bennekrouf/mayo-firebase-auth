@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { RouteProp } from '@react-navigation/native';
 import { Platform, View, TouchableOpacity, Image, StyleSheet, StatusBar, ActivityIndicator } from 'react-native';
-
 import { extractFirebaseConfig } from 'mayo-firebase-config';
 
 import { signInGoogle } from '../utils/signInGoogle';
 import authEvents from '../authEvents';
 import { Logger } from 'mayo-logger';
+import { RootStackParamList } from '../types/RootStackParamList';
 
 const img = require('../../assets/google_button.png');
 
-export const SignInScreen = ({ config = null }) => {
+type SignInScreenRouteProp = RouteProp<RootStackParamList, 'SignIn'>;
+
+export const SignInScreen = ({ route }: { route: SignInScreenRouteProp }) => {
+  const { config = null } = route.params || {};
   const [firebaseConfig, setFirebaseConfig] = useState<any | null>(null);
 
   useEffect(() => {

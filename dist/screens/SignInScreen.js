@@ -43,8 +43,9 @@ const signInGoogle_1 = require("../utils/signInGoogle");
 const authEvents_1 = __importDefault(require("../authEvents"));
 const mayo_logger_1 = require("mayo-logger");
 const img = require('../../assets/google_button.png');
-const SignInScreen = ({ config = null }) => {
+const SignInScreen = ({ route }) => {
     var _a;
+    const { config = null } = route.params || {};
     const [firebaseConfig, setFirebaseConfig] = (0, react_1.useState)(null);
     (0, react_1.useEffect)(() => {
         const fetchConfig = (config) => __awaiter(void 0, void 0, void 0, function* () {
