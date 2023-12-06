@@ -9,16 +9,15 @@ import { Logger } from 'mayo-logger';
 
 const img = require('../../assets/google_button.png');
 
-export const SignInScreen = ({ }: { route: any }) => {
+export const SignInScreen = ({ config = null }) => {
   const [firebaseConfig, setFirebaseConfig] = useState<any | null>(null);
 
   useEffect(() => {
-    const fetchConfig = async () => {
-      const config = await extractFirebaseConfig();
-      setFirebaseConfig(config);
+    const fetchConfig = async (config:any) => {
+      setFirebaseConfig(config || await extractFirebaseConfig());
     };
 
-    fetchConfig();
+    fetchConfig(config);
   }, []);
 
   if (!firebaseConfig) {

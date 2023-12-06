@@ -43,15 +43,14 @@ const signInGoogle_1 = require("../utils/signInGoogle");
 const authEvents_1 = __importDefault(require("../authEvents"));
 const mayo_logger_1 = require("mayo-logger");
 const img = require('../../assets/google_button.png');
-const SignInScreen = ({}) => {
+const SignInScreen = ({ config = null }) => {
     var _a;
     const [firebaseConfig, setFirebaseConfig] = (0, react_1.useState)(null);
     (0, react_1.useEffect)(() => {
-        const fetchConfig = () => __awaiter(void 0, void 0, void 0, function* () {
-            const config = yield (0, mayo_firebase_config_1.extractFirebaseConfig)();
-            setFirebaseConfig(config);
+        const fetchConfig = (config) => __awaiter(void 0, void 0, void 0, function* () {
+            setFirebaseConfig(config || (yield (0, mayo_firebase_config_1.extractFirebaseConfig)()));
         });
-        fetchConfig();
+        fetchConfig(config);
     }, []);
     if (!firebaseConfig) {
         return (react_1.default.createElement(react_native_1.View, { style: styles.container },
