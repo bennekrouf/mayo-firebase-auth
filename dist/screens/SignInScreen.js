@@ -38,7 +38,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SignInScreen = void 0;
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
-const mayo_firebase_config_1 = require("mayo-firebase-config");
 const signInGoogle_1 = require("../utils/signInGoogle");
 const authEvents_1 = __importDefault(require("../authEvents"));
 const mayo_logger_1 = require("mayo-logger");
@@ -49,7 +48,7 @@ const SignInScreen = ({ route }) => {
     const [firebaseConfig, setFirebaseConfig] = (0, react_1.useState)(null);
     (0, react_1.useEffect)(() => {
         const fetchConfig = (config) => __awaiter(void 0, void 0, void 0, function* () {
-            setFirebaseConfig(config || (yield (0, mayo_firebase_config_1.extractFirebaseConfig)()));
+            setFirebaseConfig(config);
         });
         fetchConfig(config);
     }, []);
