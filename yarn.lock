@@ -18,9 +18,9 @@
     superstruct "^0.6.2"
 
 "@react-native-firebase/auth@^18.5.0":
-  version "18.7.2"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-18.7.2.tgz#29db8dbcf45d9c1c31e815f77597958bca8bfe52"
-  integrity sha512-6s7JOLWi/sLsGb644UFL83Lkj181dJ+Z7CtX+xO6oLq+34fU5KbAIctQMcL6YnEqTDMBVdGOaiqwf/UsKjldsg==
+  version "18.7.3"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-18.7.3.tgz#60a3b66a9b93313ff00515b706bbf15864da99fb"
+  integrity sha512-agsooQigPbfZC3D74v2hDymG4dIdoLzhAoszmBPLUgPkS55nAnVgRvXpbG2c19T8jX98nuFWt2/mY0Y0GEEfWA==
   dependencies:
     plist "^3.1.0"
 
@@ -229,14 +229,6 @@ kind-of@^6.0.0, kind-of@^6.0.1:
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
-
-mayo-firebase-config@^1.2.22:
-  version "1.2.23"
-  resolved "https://registry.yarnpkg.com/mayo-firebase-config/-/mayo-firebase-config-1.2.23.tgz#1d952f43cdf1f269254442bf2f52221068a21d1f"
-  integrity sha512-/0n7AISDMRC3G/BAY8jZ//XftkmdGhAa1uvHlJaVwotcuortehx99pXL2l7DndsJO6F58Morxkj3E8iHGVP9Uw==
-  dependencies:
-    mayo-logger "^1.0.8"
-    react-native-device-info "^10.12.0"
 
 mayo-logger@^1.0.8:
   version "1.2.0"
