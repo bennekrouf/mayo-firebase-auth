@@ -59,26 +59,26 @@ const SignInScreen = ({ route }) => {
     }
     const webClientId = (_a = firebaseConfig === null || firebaseConfig === void 0 ? void 0 : firebaseConfig.webClientId) !== null && _a !== void 0 ? _a : "";
     const handleSignIn = () => __awaiter(void 0, void 0, void 0, function* () {
-        mayo_logger_1.Logger.info("Initiating Google sign-in.");
+        mayo_logger_1.Logger.info("Initiating Google sign-in.", null, { tag: 'mayo-firebase-auth' });
         try {
             if (react_native_1.Platform.OS === 'android' && !webClientId) {
-                mayo_logger_1.Logger.warn("webClientId is not provided for Android.");
+                mayo_logger_1.Logger.warn("webClientId is not provided for Android.", null, { tag: 'mayo-firebase-auth' });
                 throw Error(`RN SignInScreen - webClientId is not provided for Android`);
             }
             else {
-                mayo_logger_1.Logger.info(`Requesting authentication with webclientId: ${webClientId}`);
+                mayo_logger_1.Logger.info(`Requesting authentication with webclientId: ${webClientId}`, null, { tag: 'mayo-firebase-auth' });
                 const googleCredential = yield (0, signInGoogle_1.signInGoogle)(webClientId);
                 if (!googleCredential) {
                     const errorMsg = `signInGoogle did not return any user for webClientId ${webClientId}`;
-                    mayo_logger_1.Logger.error(errorMsg);
+                    mayo_logger_1.Logger.error(errorMsg, null, { tag: 'mayo-firebase-auth' });
                     throw Error(`RN SignInScreen - ${errorMsg}`);
                 }
-                mayo_logger_1.Logger.info("User signed in successfully.", { googleCredential });
+                mayo_logger_1.Logger.info("User signed in successfully.", { googleCredential }, { tag: 'mayo-firebase-auth' });
                 authEvents_1.default.emit('signedIn', googleCredential);
             }
         }
         catch (error) {
-            mayo_logger_1.Logger.error(`Authentication error: ${JSON.stringify(error)}`, error);
+            mayo_logger_1.Logger.error(`Authentication error: ${JSON.stringify(error)}`, error, { tag: 'mayo-firebase-auth' });
             return error;
         }
     });

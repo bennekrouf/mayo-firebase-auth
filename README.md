@@ -53,8 +53,6 @@ Here I am showing you all the things to do :
 
 ## Create a firebaseConfig.json file:
 
-!! You can avoid this step by using this npm component : may-firebase-config
-
 The parameters value are picked from GoogleService-Info.plist and app in the firebase console.
 
 ```js

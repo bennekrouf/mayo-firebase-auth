@@ -34,27 +34,27 @@ export const SignInScreen = ({ route }: { route: SignInScreenRouteProp }) => {
   const webClientId = firebaseConfig?.webClientId ?? "";
 
   const handleSignIn = async () => {
-    Logger.info("Initiating Google sign-in.");
+    Logger.info("Initiating Google sign-in.", null, { tag: 'mayo-firebase-auth'});
 
     try {
       if (Platform.OS === 'android' && !webClientId) {
-        Logger.warn("webClientId is not provided for Android.");
+        Logger.warn("webClientId is not provided for Android.", null, { tag: 'mayo-firebase-auth'});
         throw Error(`RN SignInScreen - webClientId is not provided for Android`);
       } else {
-        Logger.info(`Requesting authentication with webclientId: ${webClientId}`);
+        Logger.info(`Requesting authentication with webclientId: ${webClientId}`, null, { tag: 'mayo-firebase-auth'});
         const googleCredential = await signInGoogle(webClientId);
         
         if(!googleCredential) {
           const errorMsg = `signInGoogle did not return any user for webClientId ${webClientId}`;
-          Logger.error(errorMsg);
+          Logger.error(errorMsg, null, { tag: 'mayo-firebase-auth'});
           throw Error(`RN SignInScreen - ${errorMsg}`);
         }
 
-        Logger.info("User signed in successfully.", { googleCredential });
+        Logger.info("User signed in successfully.", { googleCredential }, { tag: 'mayo-firebase-auth'});
         authEvents.emit('signedIn', googleCredential);
       }
     } catch (error) {
-      Logger.error(`Authentication error: ${JSON.stringify(error)}`, error);
+      Logger.error(`Authentication error: ${JSON.stringify(error)}`, error, { tag: 'mayo-firebase-auth'});
       return error;
     }
   };
