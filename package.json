@@ -16,7 +16,6 @@
     "@types/react": "^18.2.27",
     "events": "^3.3.0",
     "mayo-logger": "^1.0.8",
-    "react-native": "^0.73.1",
     "react-native-device-info": "^10.12.0",
     "react-native-screens": "^3.27.0"
   },
