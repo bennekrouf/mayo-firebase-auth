@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { RouteProp } from '@react-navigation/native';
 import { Platform, View, TouchableOpacity, Image, StyleSheet, StatusBar, ActivityIndicator } from 'react-native';
-import { extractFirebaseConfig } from 'mayo-firebase-config';
 
 import { signInGoogle } from '../utils/signInGoogle';
 import authEvents from '../authEvents';
@@ -18,7 +17,7 @@ export const SignInScreen = ({ route }: { route: SignInScreenRouteProp }) => {
 
   useEffect(() => {
     const fetchConfig = async (config:any) => {
-      setFirebaseConfig(config || await extractFirebaseConfig());
+      setFirebaseConfig(config);
     };
 
     fetchConfig(config);
