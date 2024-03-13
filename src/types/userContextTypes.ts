@@ -6,4 +6,5 @@ export type UserContextType = {
   useLogout: () => void;
   authEvents: EventEmitter;
   userContextLoading: boolean;
+  isFetchedUser: boolean;
 };

@@ -14,6 +14,7 @@ type UserProviderProps = {
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userContextLoading, setUserContextLoading] = useState(true);
+  const [isFetchedUser, setIsFetchedUser] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -31,6 +32,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         Logger.error("Error fetching user from AsyncStorage.", error);
       } finally {
         setUserContextLoading(false);
+        setIsFetchedUser(true);
       }
     };
 
@@ -38,7 +40,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser, useLogout, authEvents, userContextLoading }}>
+    <UserContext.Provider value={{ user, setUser, useLogout, authEvents, userContextLoading, isFetchedUser }}>
       {children}
     </UserContext.Provider>
   );

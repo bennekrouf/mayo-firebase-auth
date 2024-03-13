@@ -19,6 +19,7 @@ export type UserContextType = {
     useLogout: () => void;
     authEvents: EventEmitter;
     userContextLoading: boolean;
+    isFetchedUser: boolean;
 };
 
 export declare const SignInScreen: React.FC<{
