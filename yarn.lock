@@ -969,9 +969,9 @@
     semver "^7.5.2"
 
 "@react-native-firebase/app@^18.7.1":
-  version "18.7.2"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-18.7.2.tgz#f50fc3ad5d990086cb01802f4d2e72137e454425"
-  integrity sha512-ZLHB0SfTPEwEzFO1oxWKb24Y8uI0vfGVjfWhfViFQsRKIhe9GF414lff7AFEbI2zW2zb23KdcKCE4WU10i+YrA==
+  version "18.9.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-18.9.0.tgz#e3c26156ac4f1d12ad5b2c9ce5caf7745204be65"
+  integrity sha512-kMY4HVWxfz0YjQ5n9oyW9uifI5CkQfLfj2FEeQrI9mCwaCNuRw04x9Yc8LeFpew7NPEDVfty7tlL3WEjDpvNEw==
   dependencies:
     opencollective-postinstall "^2.0.3"
     superstruct "^0.6.2"
